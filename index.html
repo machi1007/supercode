@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>大樹終極密碼</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            margin-top: 50px;
+        }
+        #guess {
+            padding: 8px;
+            margin-right: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>大樹終極密碼</h1>
+    <p>大樹已經準備了一個1到100之間的隨機數字。試著猜出它是多少！</p>
+   
+    <input type="number" id="guess" placeholder="輸入你的猜測" min="1" max="100">
+    <input type="submit" value="猜一下" onclick="checkGuess()">
+   
+    <p id="message"></p>
+   
+    <script>
+        // 生成一個1到100之間的隨機數字
+        const targetNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+function checkGuess() {
+    const guess = document.getElementById("guess").value;
+    attempts++;
+
+    let message = `你選擇了數字：${guess}。`;
+
+    if (guess == targetNumber) {
+        message += ` 恭喜你，猜對了！答案是${targetNumber}，你用了${attempts}次嘗試。`;
+    } else if (guess < targetNumber) {
+        message += " 猜低了，再試一次。";
+    } else {
+        message += " 猜高了，再試一次。";
+    }
+
+    document.getElementById("message").innerHTML = message;
+}
+    </script>
+</body>
+</html>
